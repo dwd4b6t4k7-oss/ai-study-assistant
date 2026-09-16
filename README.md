@@ -22,9 +22,9 @@ StudyPilot is a student-focused AI study assistant built as a 12th-grade ICT sci
 - React 19 + Vite
 - JavaScript + CSS
 - PDF.js (`pdfjs-dist`) for PDF text extraction
-- OpenAI API through server-side Node/Vercel functions
+- OpenAI API through server-side functions
 - GitHub Actions for build checks
-- Vercel-ready deployment configuration
+- Netlify deployment configuration
 
 ## Run locally
 
@@ -33,12 +33,7 @@ npm install
 npm run dev
 ```
 
-Create a local `.env` file based on `.env.example`:
-
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_MODEL=gpt-5.6-luna
-```
+Create a local `.env` file based on `.env.example` and add your OpenAI API key. The application uses its configured model server-side.
 
 Never put an OpenAI API key in frontend code or commit it to GitHub. The key must remain a server-side environment variable.
 
@@ -50,13 +45,12 @@ npm run build
 
 GitHub Actions automatically runs the production build on pushes to `main` and pull requests targeting `main`.
 
-## Deploy with Vercel
+## Deploy with Netlify
 
-1. Import this GitHub repository into Vercel.
-2. Keep the framework as Vite / let Vercel detect the project automatically.
-3. Add `OPENAI_API_KEY` as a Vercel Environment Variable for the environments where the AI should run.
-4. Optionally add `OPENAI_MODEL` to choose the server-side model.
-5. Deploy.
+1. Connect this GitHub repository to Netlify.
+2. Use `npm run build` as the build command and `dist` as the publish directory.
+3. Add `OPENAI_API_KEY` as a Netlify environment variable for the production environment.
+4. Deploy.
 
 The frontend can run without an API key, but AI chat and AI study-set generation will show a backend configuration message until the server environment is configured.
 
@@ -73,7 +67,7 @@ React StudyPilot Dashboard
    ↓
 Browser document extraction / local progress
    ↓
-Vercel API routes
+Netlify serverless functions
    ↓
 OpenAI model
    ↓
@@ -85,5 +79,3 @@ Interactive learning + progress tracking
 ## Project direction
 
 Future versions can add OCR for scanned PDFs, stronger structured AI outputs, persistent accounts, cloud-saved study sessions, richer analytics, and a public production deployment.
-
-<!-- CI trigger: verify the production build after the workflow configuration fix. -->
