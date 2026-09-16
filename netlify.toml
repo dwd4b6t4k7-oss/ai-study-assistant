@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+  environment = { SECRETS_SCAN_OMIT_KEYS = "OPENAI_API_KEY" }
+
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+[[redirects]]
+  from = "/api/study"
+  to = "/.netlify/functions/study"
+  status = 200
