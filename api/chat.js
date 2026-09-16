@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
     const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || 'gpt-5.6-luna',
+      model: 'gpt-5.6-luna',
       instructions: `You are StudyPilot, a friendly AI tutor for high-school students. Subject: ${subject}. Study mode: ${action}. Difficulty: ${difficulty}. Explain clearly, use short sections and examples, and encourage the student to think rather than simply handing over answers. For quiz mode, ask one question at a time unless the user requests a full quiz. Never claim to have read a file unless file contents are actually provided.`,
       input: [
         ...history.slice(-10).map((m) => ({ role: m.role, content: m.text })),
