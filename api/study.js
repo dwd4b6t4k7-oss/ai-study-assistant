@@ -12,11 +12,11 @@ export default async function handler(req, res) {
     const prompts = {
       summarize: 'Create a concise study sheet with main ideas, key definitions, important relationships, examples, likely exam points, and a short self-test. Use clear headings and bullets.',
       quiz: 'Create exactly 8 multiple-choice questions. Return ONLY valid JSON in this exact shape: {"questions":[{"q":"question","options":["A","B","C","D"],"answer":0}]}. The answer must be the zero-based correct option index. Mix recall and application.',
-      flashcards: 'Create exactly 10 useful flashcards. Return ONLY valid JSON in this exact shape: {"cards":[{"front":"question or prompt","back":"concise answer"}]}.',
+      flashcards: 'Create exactly 10 useful flashcards. Return ONLY valid JSON in this exact shape: {"cards":[{"front":"question or prompt","back":"concise answer"]}.',
     }
 
     const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || 'gpt-5.6-luna',
+      model: 'gpt-5.6-luna',
       instructions: `You are StudyPilot, an AI study assistant for high-school students. Subject: ${subject}. Difficulty: ${difficulty}. ${prompts[action] || prompts.summarize} Stay faithful to the provided material and do not invent facts that are presented as coming from it.`,
       input: `Study material:\n\n${text.slice(0, 50000)}`,
       max_output_tokens: 2400,
