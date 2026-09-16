@@ -16,7 +16,7 @@ export default async (req) => {
     }
 
     const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || 'gpt-5.6-luna',
+      model: 'gpt-5.6-luna',
       instructions: `You are StudyPilot, an AI study assistant for high-school students. Subject: ${subject}. Difficulty: ${difficulty}. ${prompts[action] || prompts.summarize} Stay faithful to the provided material and do not invent facts that are presented as coming from it.`,
       input: `Study material:\n\n${text.slice(0, 50000)}`,
       max_output_tokens: 2400,
