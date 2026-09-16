@@ -26,7 +26,10 @@ export default async function handler(req, res) {
     if (action === 'quiz' || action === 'flashcards') {
       const cleaned = raw.replace(/^```json\s*/i, '').replace(/\s*```$/i, '')
       try {
-        return res.status(200).json(JSON.parse(cleaned))
+        const parsed = JSON.parse(cleaned)
+        if (action === 'quiz' && !Array.isArray(parsed.questions)) throw new Error('Missing questions')
+        if (action === 'flashcards' && !Array.isArray(parsed.cards)) throw new Error('Missing cards')
+        return res.status(200).json(parsed)
       } catch {
         return res.status(502).json({ error: 'The AI returned an invalid study set. Please try again.' })
       }
