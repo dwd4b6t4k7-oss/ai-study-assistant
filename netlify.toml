@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
-  environment = { SECRETS_SCAN_OMIT_KEYS = "OPENAI_API_KEY" }
+  environment = { SECRETS_SCAN_OMIT_KEYS = "OPENAI_MODEL" }
 
 [[redirects]]
   from = "/api/chat"
