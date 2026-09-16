@@ -85,3 +85,5 @@ Interactive learning + progress tracking
 ## Project direction
 
 Future versions can add OCR for scanned PDFs, stronger structured AI outputs, persistent accounts, cloud-saved study sessions, richer analytics, and a public production deployment.
+
+<!-- CI trigger: verify the production build after the workflow configuration fix. -->
